@@ -80,6 +80,20 @@ class Tetris:
                         intersection = True
         return intersection
 
+
+
+    def go_space(self):
+        while not self.intersects():
+            self.figure.y += 1
+        self.figure.y -= 1
+        self.freeze()
+
+    def go_down(self):
+        self.figure.y += 1
+        if self.intersects():
+            self.figure.y -= 1
+            self.freeze()
+
     def break_lines(self):
         lines = 0
         for i in range(1, self.height):
@@ -93,18 +107,6 @@ class Tetris:
                     for j in range(self.width):
                         self.field[i1][j] = self.field[i1 - 1][j]
         self.score += lines ** 2
-
-    def go_space(self):
-        while not self.intersects():
-            self.figure.y += 1
-        self.figure.y -= 1
-        self.freeze()
-
-    def go_down(self):
-        self.figure.y += 1
-        if self.intersects():
-            self.figure.y -= 1
-            self.freeze()
 
     def freeze(self):
         for i in range(4):
@@ -129,10 +131,10 @@ class Tetris:
             self.figure.rotation = old_rotation
 
 
-# Initialize the game engine
+
 pygame.init()
 
-# Define some colors
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (126, 126, 126)
@@ -142,7 +144,7 @@ screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Tetris hello")
 
-# Loop until the user clicks the close button.
+
 done = False
 clock = pygame.time.Clock()
 fps = 30
