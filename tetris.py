@@ -4,12 +4,12 @@ import random
 
 colors = [
     (0, 0, 0),
-    (120, 37, 179),
+    (224, 238, 224),
     (100, 179, 179),
     (80, 34, 22),
-    (80, 134, 22),
-    (180, 34, 22),
-    (180, 34, 122),
+    (132,112, 255),
+    (127,255,212),
+    (180, 34, 123),
 ]
 
 
@@ -49,7 +49,7 @@ class Tetris:
     height = 0
     width = 0
     x = 100
-    y = 60
+    y = 50
     zoom = 20
     figure = None
 
@@ -65,7 +65,7 @@ class Tetris:
                 new_line.append(0)
             self.field.append(new_line)
 
-    def new_figure(self):
+    def new_fig(self):
         self.figure = Figure(3, 0)
 
     def intersects(self):
@@ -114,9 +114,9 @@ class Tetris:
                 if i * 4 + j in self.figure.image():
                     self.field[i + self.figure.y][j + self.figure.x] = self.figure.color
         self.break_lines()
-        self.new_figure()
+        self.new_fig()
         if self.intersects():
-            self.state = "gameover"
+            self.state = "gameover haha"
 
     def go_side(self, dx):
         old_x = self.figure.x
@@ -136,7 +136,6 @@ pygame.init()
 
 
 BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
 GRAY = (126, 126, 126)
 
 size = (400, 500)
@@ -155,7 +154,7 @@ pressing_down = False
 
 while not done:
     if game.figure is None:
-        game.new_figure()
+        game.new_fig()
     counter += 1
     if counter > 100000:
         counter = 0
@@ -215,11 +214,11 @@ while not done:
         font = pygame.font.SysFont('Bradley Hand ITC', 25, True, False)
         font1 = pygame.font.SysFont('Bradley Hand ITC', 65, True, False)
         text = font.render("Score: " + str(game.score), True, GRAY)
-        text_game_over = font1.render("Game Over", True, (255, 125, 0))
+        text_game_over = font1.render("Game Haha", True, (255, 125, 0))
         text_game_over1 = font1.render("Press ESC", True, (255, 215, 0))
 
         screen.blit(text, [0, 0])
-        if game.state == "gameover":
+        if game.state == "gameover haha":
             screen.blit(text_game_over, [20, 200])
             screen.blit(text_game_over1, [25, 265])
 
